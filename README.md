@@ -1,6 +1,13 @@
 <h1 align="center">
-Storefront
+Storefront - Cloud native reference implementation
 </h1>
+
+<p align="left">
+    <a href="https://github.com/ibm-garage-ref-storefront/docs/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Released under the Apache-2.0 license" />
+    <a href="https://travis-ci.org/github/ibm-garage-ref-storefront/docs"><img src="https://travis-ci.org/github/ibm-garage-ref-storefront/docs.svg?branch=master" alt="Travis"></a>
+  </a>
+</p>
 
 ## Storefront
 
