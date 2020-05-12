@@ -12,6 +12,5 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: false
   local_dir: public
-  fqdn: storefront.dev
   on:
     branch: master
