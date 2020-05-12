@@ -4,6 +4,8 @@
   "version": "1.22.1",
   "license": "Apache 2.0",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
     "dev": "gatsby develop -H 0.0.0.0",
     "dev:clean": "yarn clean && yarn dev",
     "build": "gatsby build",
@@ -17,5 +19,8 @@
     "gatsby-theme-carbon": "^1.22.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }

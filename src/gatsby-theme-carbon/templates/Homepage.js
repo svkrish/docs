@@ -3,43 +3,31 @@ import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { calloutLink } from './Homepage.module.scss';
 
-import Carbon from '../../images/carbon.jpg';
+import Carbon from '../../images/cloud_banner.jpg';
 
-const FirstLeftText = () => <p>Callout component</p>;
+const FirstLeftText = () => <p>Storefront Application</p>;
 
 const FirstRightText = () => (
   <p>
-    This is a callout component. You can edit the contents by updating the{' '}
-    <a href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/5fe12de31bb19fbfa2cab7c69cd942f55aa06f79/packages/example/src/gatsby-theme-carbon/templates/Homepage.js">
-      pre-shadowed homepage template
-    </a>
-    . You can also provide <code>color</code> and <code>backgroundColor</code>{' '}
-    props to suit your theme.
-    <a
-      className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/master/packages/example/src/gatsby-theme-carbon/templates/Homepage.js"
-    >
-      Homepage source →
-    </a>
+    This is an IBM cloud native reference implementation that shows us the deployment of cloud native applications on Openshift and IKS. It aims to illustrate lot of best practices around how we build and run applications taking full advantage of cloud computing.
   </p>
 );
 
-const SecondLeftText = () => <p>Callout component</p>;
+const SecondLeftText = () => <p>IBM Garage</p>;
 
 const SecondRightText = () => (
   <p>
-    You can also not use these components at all by not providing the callout
-    props to the template or writing your own template.
+    IBM Garage™ is a bold, comprehensive approach to innovation and transformation that brings designers and developers together with your business and IT stakeholders to quickly create and scale new ideas that can dramatically impact your business.
     <a
       className={calloutLink}
-      href="https://github.com/carbon-design-system/gatsby-theme-carbon/blob/master/packages/example/src/gatsby-theme-carbon/templates/Homepage.js"
+      href="https://www.ibm.com/garage"
     >
-      Homepage source →
+      IBM Garage →
     </a>
   </p>
 );
 
-const BannerText = () => <h1>Banner component</h1>;
+const BannerText = () => <h1>STOREFRONT</h1>;
 
 const customProps = {
   Banner: <HomepageBanner renderText={BannerText} image={Carbon} />,
