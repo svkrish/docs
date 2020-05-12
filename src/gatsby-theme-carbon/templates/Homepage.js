@@ -3,7 +3,7 @@ import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { calloutLink } from './Homepage.module.scss';
 
-import Carbon from '../../images/cloud_banner.jpg';
+import Carbon from '../../images/homepage.jpg';
 
 const FirstLeftText = () => <p>Storefront Application</p>;
 
