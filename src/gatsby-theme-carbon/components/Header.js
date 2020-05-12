@@ -3,7 +3,7 @@ import Header from 'gatsby-theme-carbon/src/components/Header';
 
 const CustomHeader = props => (
   <Header {...props}>
-    Gatsby theme&nbsp;<span>Carbon</span>
+    Cloud Native Reference Implementation - &nbsp;<span>Storefront</span>
   </Header>
 );
 

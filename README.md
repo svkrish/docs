@@ -1,24 +1,34 @@
-# Gatsby Theme Carbon Starter
+<h1 align="center">
+Storefront
+</h1>
 
-## What is this?
+## Storefront
 
-> Gatsby has implemented a new feature called [themes](https://www.gatsbyjs.org/docs/themes/). Themes encapsulate all of the configuration and implementation details of Gatsby websites. This is a starter-kit (boilerplate) that has a dependancy on the `gatsby-theme-carbon` package. It includes some sample content in the `src/pages` directory.
+### Install dependencies
 
-## What’s included?
+```
+npm install
+```
 
-- Carbon Elements and Carbon React
-- [Emotion](https://emotion.sh) for React component styling
-- [gatsby-mdx](https://gatsby-mdx.netlify.com/) with brand new markdown components
+### Local Development
 
-## How do I use it?
+After forking the repository, you can run your changes locally using the following:
 
-`gatsby-theme-carbon` at it’s core relies on [mdx](https://mdxjs.com/) for page creation. Check out the `src/pages` directory for some examples for using mdx.
+```
+npm run dev
+```
 
-A key feature of Gatsby themes is component shadowing. By simply placing a component into the `src/gatsby-theme-carbon/components` location, you can override components used by the theme. You can read more about component shadowing [here](https://www.gatsbyjs.org/docs/themes/api-reference#component-shadowing).
+You can access your local changes via [localhost:8000](http://localhost:8000).
 
-You’re also free to make your own components and use them in your MDX pages.
+### Publish Content
 
-## What’s Next?
+Currently, the content is published to the GitHub pages site through the `gh-pages` branch
+using the `gh-pages` npm module. All of the details for handling the publishing are covered within
+the deploy script. The deploy can be run using the following:
 
-- Migrating reusable MDX components
-- Parameters to configure Carbon theme
+```
+npm run deploy
+```
+
+**Note:** There is a time delay between when the deploy process completes and when the
+content is available on the published site.

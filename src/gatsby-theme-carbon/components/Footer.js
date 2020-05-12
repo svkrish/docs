@@ -1,40 +1,42 @@
 import React from 'react';
 import Footer from 'gatsby-theme-carbon/src/components/Footer';
 
+const currentYear = new Date().getFullYear();
+
 const Content = ({ buildTime }) => (
   <>
     <p>
-      The <code>Content</code> component receives a <code>buildTime</code> prop
-      that to display your site's build time: {buildTime}
+        Have questions? open an issue on{' '}
+        <a
+            style={{ textDecoration: 'underline' }}
+            href="https://github.com/ibm-garage-ref-storefront/docs/issues/new">
+            GitHub.
+        </a>
     </p>
     <p>
-      By importing the <strong>Footer</strong> component from
-      gatsby-theme-carbon, we can supply our own props.
+          Built with{' '}
+          <a href="https://github.com/carbon-design-system/gatsby-theme-carbon">
+            Gatsby Theme Carbon
+          </a>
+          .
+          <br />
+          Copyright © {currentYear} IBM
     </p>
     <p>
-      The default export from a shadowed component will replace that component
-      in the theme.
-    </p>
-    <p>
-      <a href="https://www.gatsbyjs.org/docs/themes/api-reference/#component-shadowing">
-        More about component shadowing
-      </a>
+      Site's build time: {buildTime}
     </p>
   </>
 );
 
 const links = {
   firstCol: [
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
+    { href: 'https://ibm.com/', linkText: 'IBM' },
+    { href: 'https://www.ibm.com/privacy/us/en/', linkText: 'Privacy' },
+    { href: 'https://www.ibm.com/legal', linkText: 'Terms of Use' },
   ],
   secondCol: [
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-    { href: 'https://ibm.com/design', linkText: 'Shadowed link' },
-  ],
+    { linkText: 'Contributors' }
+  ]
 };
 
 const CustomFooter = () => <Footer links={links} Content={Content} />;
