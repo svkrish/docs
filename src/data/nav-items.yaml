@@ -1,6 +1,6 @@
 - title: Introduction
   pages:
-    - path: /introduction
+    - path: /docs/introduction
 - title: Architecture
   pages:
     - path: /architecture
