@@ -32,6 +32,9 @@
       path: /deployments/openshift
     - title: IKS
       path: /deployments/iks
+- title: App flow
+  pages:
+    - path: /app
 - title: References
   pages:
     - path: /references
