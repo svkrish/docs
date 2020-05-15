@@ -7,9 +7,6 @@
 - title: Application Overview
   pages:
     - path: /application-overview
-- title: Implementation
-  pages:
-    - path: /implementation
 - title: Related Repositories
   pages:
     - title: Inventory
