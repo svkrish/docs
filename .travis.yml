@@ -3,7 +3,6 @@ node_js:
   - 12
 script:
   - git clone https://github.com/ibm-garage-ref-storefront/inventory-ms-spring.git
-  - cd ..
   - ls
   - npm run build
 branches:
