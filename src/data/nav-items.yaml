@@ -19,6 +19,10 @@
       path: /related-repositories/auth
     - title: Orders
       path: /related-repositories/orders
+    - title: Storefront Web UI
+      path: /related-repositories/web
+    - title: Storefront Mobile UI
+      path: /related-repositories/mobile
     - title: GitOps
       path: /related-repositories/gitops
     - title: Pipelines

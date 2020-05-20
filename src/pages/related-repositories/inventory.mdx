@@ -1,3 +1,103 @@
 ---
 title: Inventory
+description: This project demonstrates the implementation of Inventory Microservice
 ---
+
+## Introduction
+
+This project demonstrates the implementation of Inventory Microservice. The inventory microservice uses MySQL database as its datasource. It has the complete list of all the antique computing devices that are avilable in our store front.
+
+Though it is a part of a bigger application, Inventory service is itself an application in turn that manages the data from data store.
+
+## Architecture
+
+![Inventory Microservice](../../images/inventory.png)
+
+## APIs
+
+| APIs                  | Function                   |
+| --------------------- | -------------------------- |
+| `/micro/inventory`    | Get all items in inventory |
+
+## Frameworks
+
+<Tabs>
+
+<Tab label="SpringBoot">
+
+[Inventory Github Repo](https://github.com/ibm-garage-ref-storefront/inventory-ms-spring)
+
+### Project Features
+
+<br/><br/>
+
+- Leverages [Spring Boot](https://projects.spring.io/spring-boot/) framework to build a Microservices application.
+- Uses [MySQL](https://www.mysql.com/) as the inventory database.
+- Uses [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) to persist data to MySQL database.
+- Uses [Docker](https://docs.docker.com/) to package application binary and its dependencies.
+
+<br/><br/>
+
+<Row>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app locally"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="https://github.com/ibm-garage-ref-storefront/inventory-ms-spring/blob/master/README.md"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="Appsody"
+      >
+
+![Light dark](./images/local_run.jpg)
+
+  </ImageCard>
+  </Column>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app to Openshift 4.3"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="/"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="Appsody"
+      >
+
+![Light dark](./images/redhat_openshift.jpg)
+
+  </ImageCard>
+  </Column>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app using CP4Apps"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="https://github.com/ibm-garage-ref-storefront/inventory-ms-spring/blob/master/docs/CP4APPS.md"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="CP4Apps"
+      >
+
+![Light dark](./images/cloud-pak-for-applications.jpg)
+
+  </ImageCard>
+  </Column>
+</Row>
+
+</Tab>
+
+<Tab label="OpenLiberty">
+
+TBD
+
+</Tab>
+
+<Tab label="Quarkus">
+
+TBD
+
+</Tab>
+
+</Tabs>

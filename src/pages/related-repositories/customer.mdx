@@ -1,3 +1,108 @@
 ---
-title: customer
+title: Customer
+description: This project demonstrates the implementation of Customer Microservice
 ---
+
+## Introduction
+
+This project is built to demonstrate how to build Customer Microservice. This application provides basic operations of creating and querying customer profiles from [Apache's CouchDB](http://couchdb.apache.org/) NoSQL database as part of the Customer Profile functionality of Storfront. Additionally, the Auth Microservice calls this microservice to perform Customer `username/password` authentication.
+
+Though it is a part of a bigger application, Customer service is itself an application in turn that queries the CouchDB Database.
+
+## Architecture
+
+![Customer Microservice](../../images/customer.png)
+
+## APIs
+
+| APIs                       | Function                          |
+| -------------------------- | --------------------------------- |
+| `/customer/{id}`           | Get a customer by id              |
+| `/customer/update/{id}`    | Update a customer by id           |
+| `/customer/delete/{id}`    | Delete a customer by id           |
+| `/customer/add`            | Post a customer                   |
+| `/customer/list`           | Get a list of available customers |
+| `/customer/search`         | Search a customer                 |
+
+## Frameworks
+
+<Tabs>
+
+<Tab label="SpringBoot">
+
+[Customer Github Repo](https://github.com/ibm-garage-ref-storefront/customer-ms-spring)
+
+### Project Features
+
+<br/><br/>
+
+- Leverage [Spring Boot](https://projects.spring.io/spring-boot/) framework to build a Microservices application.
+- Uses [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) to persist data to CouchDB database.
+- Uses [CouchDB](http://couchdb.apache.org/) as the customer database.
+- Uses [Docker](https://docs.docker.com/) to package application binary and its dependencies.
+
+<br/><br/>
+
+<Row>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app locally"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="https://github.com/ibm-garage-ref-storefront/customer-ms-spring/blob/master/README.md"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="Appsody"
+      >
+
+![Light dark](./images/local_run.jpg)
+
+  </ImageCard>
+  </Column>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app to Openshift 4.3"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="/"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="Appsody"
+      >
+
+![Light dark](./images/redhat_openshift.jpg)
+
+  </ImageCard>
+  </Column>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Deploy the app using CP4Apps"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="/"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="CP4Apps"
+      >
+
+![Light dark](./images/cloud-pak-for-applications.jpg)
+
+  </ImageCard>
+  </Column>
+</Row>
+
+</Tab>
+
+<Tab label="OpenLiberty">
+
+TBD
+
+</Tab>
+
+<Tab label="Quarkus">
+
+TBD
+
+</Tab>
+
+</Tabs>
