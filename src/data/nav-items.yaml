@@ -29,6 +29,8 @@
       path: /related-repositories/pipelines
 - title: Deployments
   pages:
+    - title: Locally on your machine
+      path: /deployments/appsody
     - title: Openshift
       path: /deployments/openshift
     - title: IKS
