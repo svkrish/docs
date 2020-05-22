@@ -236,7 +236,39 @@ aad8b8e1bce6        dev.local/inventory-ms-spring                         "/star
 
 <br></br>
 
-**TBD**
+Run the below command.
+
+```
+# Build customer docker image
+appsody build
+
+# Start the customer Container
+docker run --name customer-ms-spring \
+    -e COUCHDB_PORT=5985 \
+    -e COUCHDB_HOST=host.docker.internal \
+    -e COUCHDB_PROTOCOL=http \
+    -e COUCHDB_USERNAME=admin \
+    -e COUCHDB_PASSWORD=passw0rd \
+    -e COUCHDB_DATABASE=customers \
+    -e HS256_KEY=E6526VJkKYhyTFRFMC0pTECpHcZ7TGcq8pKsVVgz9KtESVpheEO284qKzfzg8HpWNBPeHOxNGlyudUHi6i8tFQJXC8PiI48RUpMh23vPDLGD35pCM0417gf58z5xlmRNii56fwRCmIhhV7hDsm3KO2jRv4EBVz7HrYbzFeqI45CaStkMYNipzSm2duuer7zRdMjEKIdqsby0JfpQpykHmC5L6hxkX0BT7XWqztTr6xHCwqst26O0g8r7bXSYjp4a \
+    -p 8083:8080 \
+    -d dev.local/customer-ms-spring
+```
+
+For instance, if it is docker-for-mac `<docker_host>` will be `docker.for.mac.localhost`.
+
+- You can also verify it as follows.
+
+```
+$ docker ps
+CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+34f3b55f7bee        dev.local/customer-ms-spring                          "/start.sh"              59 seconds ago      Up 58 seconds       8443/tcp, 0.0.0.0:8083->8080/tcp                 customer-ms-spring
+3be611140a1a        couchdb:2.1.2                                         "tini -- /docker-ent…"   26 minutes ago      Up 26 minutes       4369/tcp, 9100/tcp, 0.0.0.0:5985->5984/tcp       customercouchdb
+4d9b74402abb        dev.local/catalog-ms-spring                           "/start.sh"              15 hours ago        Up 15 hours         8443/tcp, 0.0.0.0:8082->8080/tcp                 catalog-ms-spring
+cc5af0ec4f75        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/dock…"   15 hours ago        Up 15 hours         0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   catalogelasticsearch
+aad8b8e1bce6        dev.local/inventory-ms-spring                         "/start.sh"              15 hours ago        Up 15 hours         8443/tcp, 0.0.0.0:8081->8080/tcp                 inventory-ms-spring
+7a958fa9cae3        mysql:5.7.14                                          "docker-entrypoint.s…"   16 hours ago        Up 16 hours         0.0.0.0:3306->3306/tcp                           inventorymysql
+```
 
 ### Auth
 
