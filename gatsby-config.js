@@ -1,31 +1,36 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Theme Carbon',
-    description: 'A Gatsby theme for the carbon design system',
-    keywords: 'gatsby,theme,carbon',
+    title: 'IBM Garage Cloud Native Reference Implementation',
+    description: 'IBM Garage Cloud Native Reference Implementation for Store Front microservice application',
+    keywords: 'ibm,garage,cloud-native,cloudnative,native,cloud,cp4apps,kubernetes,containers,ci,cd,cicd,tekton,argocd,appsody,gitops,spring,microprofile,quarkus',
   },
-  pathPrefix: "/docs",
+  pathPrefix: "/",
   plugins: [
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Carbon Design Gatsby Theme',
-        short_name: 'Gatsby Theme Carbon',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#0062ff',
-        display: 'browser',
-      },
-    },
+    'gatsby-transformer-json',
     {
       resolve: 'gatsby-theme-carbon',
       options: {
+        isSearchEnabled: true,
         repository: {
           baseUrl:
-            'https://github.com/carbon-design-system/gatsby-theme-carbon',
-          subDirectory: '/packages/example',
-        },
-      },
+            'https://github.com/ibm-cloud-architecture/learning-cloudnative-101',
+          subDirectory: '/'
+        }
+      }
     },
-  ],
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'data',
+        path: './src/data'
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-149377589-8",
+        head: true
+      }
+    }
+  ]
 };
