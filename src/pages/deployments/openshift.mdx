@@ -3,15 +3,29 @@ title: Deploy on Openshift
 description: Instructions to deploy on Openshift
 ---
 
+## Introduction
+Today you will be learning how to deploy all storefront microservices on Openshift using Tekton
+
 ## Table of Contents
-  * [Overview](#overview)
   * [Pre-requisites](#pre-requisites)
   * [Create an organization on Github](#create-an-organization-on-Github)
+  * [Create a Webhook](#Create-a-Webhook-for-all-microservices)
+  * [Trigger the Webhook](#trigger-the-webhook)
+  * [References](#references)
 
 
-## Pre-requisites
+Today you will be learning how to deploy all storefront microservices on Openshift using Tekton
 
-Openshift 4.3, Cloud Pak for Applications, Kabanero 
+## Pre-requisites 
+
++ [`Openshift`](https://docs.openshift.com/container-platform/4.3/welcome/index.html)
++ [`Kabanero`](https://kabanero.io/)
++ [`CloudPak for Apps`](https://www.ibm.com/cloud/cloud-pak-for-applications)
++ [`Docker cli`](https://docs.docker.com/docker-for-mac/install/)
++ [`Git cli`](https://git-scm.com/downloads)
++ [`OC cli`](https://docs.openshift.com/container-platform/4.3/welcome/index.html)
++ [`Tekton cli`](https://github.com/tektoncd/cli)
++ [`gh cli`](https://cli.github.com/)
 
 ## Create an organization on Github
 
@@ -40,8 +54,23 @@ export initials=[your initials]
 ![Storefront](../../images/storefront-organization.png)
 
 After running the storefront-repo-automator, you should be able to see the storefront repositories as shown above
-## Create a Webhook for all microservices 
+## Create a Webhook for all microservices
+Today you will learning how to create a Webhook on Tekton. To achieve this, you must run the following steps:
+
+![Storefront](../../images/creating-webhook-step1.png)
+
+![Storefront](../../images/creating-webhook-step2.png)
+
+![Storefront](../../images/creating-webhook-step3.png)
+
+![Storefront](../../images/creating-webhook-step6.png)
+
+![Storefront](../../images/creating-webhook-step4.png)
+
+![Storefront](../../images/creating-webhook-step5.png)
 
 
 ## Trigger the Webhook
+To trigger your Webhook, you must run the following steps:
 
+Edit the README.md file and commit to trigger a change
