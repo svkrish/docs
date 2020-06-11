@@ -36,18 +36,109 @@ This project will demonstrate how to deploy all the databases that are required 
 
 ### Get the repo
 
-- Clone the repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/ibm-garage-ref-storefront/storefront-databases.git
 cd storefront-databases
+chmod +x ./setup_databases.sh
 ```
 
-- Run the below command to deploy the databases on the openshift cluster where `storefront-dev` is the project name.
+Run the below command to deploy the databases on the openshift cluster where `storefront-dev-{initials}` is the project name.
 
 ```bash
-./setup_databases.sh storefront-dev
+oc login --token={your-api-token} --server={your-servername}
+./setup_databases.sh storefront-dev-{initials}
 ```
+
+The output should be something similar to what is shown below.
+```bash
+> ./setup_databases.sh storefront-dev-oir
+NAMESPACE not set. Using parameter "storefront-dev-oir"
+=========================================================================
+Set namespace
+error: A project named "storefront-dev-oir" does not exist on "https://c100-e.us-east.containers.cloud.ibm.com:30077".
+Your projects are:
+* calico-system
+* catapp
+* csantana-cf2k8s-test1
+.
+.
+.
+* ta
+* tekton-pipelines
+* tigera-operator
+To see projects on another server, pass '--server=<server>'.
+Now using project "storefront-dev-oir" on server "https://c100-e.us-east.containers.cloud.ibm.com:30077".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app centos/ruby-25-centos7~https://github.com/sclorg/ruby-ex.git
+
+to build a new example application in Ruby.
+=========================================================================
+Adding security constraints
+scc "anyuid" added to: ["system:serviceaccount:storefront-dev-oir:default"]
+scc "privileged" added to: ["system:serviceaccount:storefront-dev-oir:default"]
+=========================================================================
+Generating necessary secrets
+secret/customer-couchdb-couchdb created
+secret/orders-mariadb-secret created
+secret/inventory-mysql created
+=========================================================================
+Generating necessary configmaps
+configmap/customer-couchdb-couchdb created
+configmap/mariadb-configmap created
+configmap/orders-mariadb-tests created
+configmap/inventory-mysql-test created
+=========================================================================
+Deploying the databases
+statefulset.apps/customer-couchdb-couchdb created
+deployment.apps/elasticsearch created
+statefulset.apps/orders-mariadb created
+deployment.extensions/inventory-mysql created
+Waiting for deployment "inventory-mysql" rollout to finish: 0 of 1 updated replicas are available...
+deployment "inventory-mysql" successfully rolled out
+deployment "elasticsearch" successfully rolled out
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+Waiting for 1 pods to be ready...
+statefulset rolling update complete 1 pods at revision orders-mariadb-77b894447...
+=========================================================================
+Creating database services
+service/customer-couchdb-couchdb created
+service/customer-couchdb-svc-couchdb created
+service/elasticsearch created
+service/orders-mariadb created
+service/inventory-mysql created
+=========================================================================
+Populating data in database
+configmap/inventory-ms-spring-data created
+job.batch/inventory-ms-spring-populate-mysql created
+job.batch/customer-ms-spring-create-user created
+job.batch/inventory-ms-spring-populate-mysql condition met
+job.batch/customer-ms-spring-create-user condition met
+=========================================================================
+```
+
+Now access your new project 
+```
+oc project {storefront-dev-initials}
+```
+You should get an output similar to what is shown below
+
+```bash
+> oc project {storefront-dev-initials}
+> oc get pods
+  NAME                                       READY     STATUS      RESTARTS   AGE
+  customer-couchdb-couchdb-0                 2/2       Running     0          5m55s
+  customer-ms-spring-create-user-v26cw       0/1       Completed   0          5m1s
+  elasticsearch-7b49df8497-p87fd             1/1       Running     0          5m55s
+  inventory-ms-spring-populate-mysql-dz8n4   0/1       Completed   0          5m2s
+  inventory-mysql-8667979689-mcgkb           1/1       Running     0          5m54s
+  orders-mariadb-0                           1/1       Running     0          5m55s
+```
+Upon completing this section you can see above all of your databases have been deployed onto your openshift cluster.
 
 ## Create an organization on Github
 
