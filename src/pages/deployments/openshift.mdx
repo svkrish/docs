@@ -8,6 +8,7 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 
 ## Table of Contents
   * [Pre-requisites](#pre-requisites)
+  * [Set Up databases for Storefront](#set-up-databases-for-storefront)
   * [Create an organization on Github](#create-an-organization-on-github)
   * [Create a Webhook](#create-a-webhook-for-all-microservices)
   * [Trigger the Webhook](#trigger-the-webhook)
@@ -23,6 +24,30 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 + [`OC cli`](https://docs.openshift.com/container-platform/4.3/welcome/index.html)
 + [`Tekton cli`](https://github.com/tektoncd/cli)
 + [`gh cli`](https://cli.github.com/)
++ [appsody](https://appsody.dev/docs/getting-started/installation)
+
+
+## Set Up databases for Storefront
+
+*This project is part of the 'IBM Cloud Native Reference Architecture' suite, available at
+http://cloudnativereference.dev*
+
+This project will demonstrate how to deploy all the databases that are required by the storefront application. This will show you how to deploy MySQL, Elasticsearch, CouchDB, and MariaDB databases.
+
+### Get the repo
+
+- Clone the repository:
+
+```bash
+git clone https://github.com/ibm-garage-ref-storefront/storefront-databases.git
+cd storefront-databases
+```
+
+- Run the below command to deploy the databases on the openshift cluster where `storefront-dev` is the project name.
+
+```bash
+./setup_databases.sh storefront-dev
+```
 
 ## Create an organization on Github
 
