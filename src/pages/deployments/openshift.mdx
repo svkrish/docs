@@ -8,13 +8,10 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 
 ## Table of Contents
   * [Pre-requisites](#pre-requisites)
-  * [Create an organization on Github](#create-an-organization-on-Github)
-  * [Create a Webhook](#Create-a-Webhook-for-all-microservices)
+  * [Create an organization on Github](#create-an-organization-on-github)
+  * [Create a Webhook](#create-a-webhook-for-all-microservices)
   * [Trigger the Webhook](#trigger-the-webhook)
   * [References](#references)
-
-
-Today you will be learning how to deploy all storefront microservices on Openshift using Tekton
 
 ## Pre-requisites 
 
@@ -36,7 +33,7 @@ Github has information on how to create an organization. View the link below for
 https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/creating-a-new-organization-from-scratch
 ## Clone the storefront-repo-automator to run the script  
 
-Go into the repository named storefront-repo-automator and clone the repository: 
+Go into the repository named **storefront-repo-automator** and clone the repository: 
 
 https://github.com/ibm-garage-ref-storefront/storefront-repo-automator
 
@@ -51,26 +48,40 @@ export org=[organization name]
 export initials=[your initials]
 ./run.sh $org $initials
 ```
-![Storefront](../../images/storefront-organization.png)
+![Storefront](../../images/storefront-org.png)
 
 After running the storefront-repo-automator, you should be able to see the storefront repositories as shown above
 ## Create a Webhook for all microservices
 Today you will learning how to create a Webhook on Tekton. To achieve this, you must run the following steps:
 
-![Storefront](../../images/creating-webhook-step1.png)
+Go on * **cloud.ibm.com** *
+
+On the resource list, you should see a list of your clusters.
+
+Once you have the cluster you want to work on, click on the Openshift web console. When you are on the Openshift web console, click on the box icon and go into Cloud Pak console. 
+
+*See image below for reference*
+
+![Storefront](../../images/creating-webhook-step1.png) 
+
+Once you are inside the IBM Cloud Pak console, click on the second icon to access the * **Instances** * page. On the page inside the Pipeline box, click on the button * **Manage Pipelines** *
+
+
 
 ![Storefront](../../images/creating-webhook-step2.png)
 
 ![Storefront](../../images/creating-webhook-step3.png)
 
-![Storefront](../../images/creating-webhook-step6.png)
 
-![Storefront](../../images/creating-webhook-step4.png)
-
-![Storefront](../../images/creating-webhook-step5.png)
 
 
 ## Trigger the Webhook
 To trigger your Webhook, you must run the following steps:
 
 Edit the README.md file and commit to trigger a change
+
+![Storefront](../../images/creating-webhook-step6.png)
+
+![Storefront](../../images/creating-webhook-step4.png)
+
+![Storefront](../../images/creating-webhook-step5.png)
