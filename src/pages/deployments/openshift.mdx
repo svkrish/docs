@@ -1,16 +1,18 @@
 ---
-title: Deploy on Openshift
+title: Deploy Storefront Microservices onto Openshift
 description: Instructions to deploy on Openshift
 ---
 
 ## Introduction
 Today you will be learning how to deploy all storefront microservices on Openshift using Tekton
 
+![Storefront Architecture](../../images/storefront.png)
+
 ## Table of Contents
   * [Pre-requisites](#pre-requisites)
-  * [Set Up databases for Storefront](#set-up-databases-for-storefront)
+  * [Set Up Databases for Storefront](#set-up-databases-for-storefront)
   * [Create an organization on Github](#create-an-organization-on-github)
-  * [Create a Webhook](#create-a-webhook-for-all-microservices)
+  * [Deploy Microservices to Openshift](#deploy-microservices-to-openshift)
   * [Trigger the Webhook](#trigger-the-webhook)
   * [References](#references)
 
@@ -27,16 +29,11 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 + [appsody](https://appsody.dev/docs/getting-started/installation)
 
 
-## Set Up databases for Storefront
-
-*This project is part of the 'IBM Cloud Native Reference Architecture' suite, available at
-http://cloudnativereference.dev*
+## Set Up Databases for Storefront
 
 This project will demonstrate how to deploy all the databases that are required by the storefront application. This will show you how to deploy MySQL, Elasticsearch, CouchDB, and MariaDB databases.
 
-### Get the repo
-
-Clone the repository:
+### Clone the repo
 
 ```bash
 git clone https://github.com/ibm-garage-ref-storefront/storefront-databases.git
@@ -139,7 +136,6 @@ You should get an output similar to what is shown below
   orders-mariadb-0                           1/1       Running     0          5m55s
 ```
 Upon completing this section you can see above all of your databases have been deployed onto your openshift cluster.
-
 ## Create an organization on Github
 
 When you create a new organization from scratch, it doesn't have any repositories associated with it.
@@ -148,56 +144,77 @@ Github has information on how to create an organization. View the link below for
 
 https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/creating-a-new-organization-from-scratch
 ## Clone the storefront-repo-automator to run the script  
-
-Go into the repository named **storefront-repo-automator** and clone the repository: 
-
-https://github.com/ibm-garage-ref-storefront/storefront-repo-automator
+You can manually create a new repo and added it onto your Github organization or you can use the script that we provided for you. Clone the repository [storefront-repo-automator](https://github.com/ibm-garage-ref-storefront/storefront-repo-automator) as shown below:
 
 Once you have cloned the repository, make sure you run the following command: 
 
-``` shell
+``` bash
+git clone https://github.com/ibm-garage-ref-storefront/storefront-repo-automator
 cd storefront-repo-automator
+export org={organization name}
+export initials={your initials}
+./run.sh $org $initials 
 ```
+After running the storefront-repo-automator, you should be able to see the storefront repositories as shown below.
 
-```shell
-export org=[organization name]
-export initials=[your initials]
-./run.sh $org $initials
-```
 ![Storefront](../../images/storefront-org.png)
 
-After running the storefront-repo-automator, you should be able to see the storefront repositories as shown above
-## Create a Webhook for all microservices
-Today you will learning how to create a Webhook on Tekton. To achieve this, you must run the following steps:
+## Deploy Microservices to Openshift
+Today you will learning how to deploy all microservices to Openshift by creating a Webhook on Tekton. To achieve this, you must run the following steps:
 
-Go on * **cloud.ibm.com** *
+- Go on [cloud.ibm.com](cloud.ibm.com)
 
-On the resource list, you should see a list of your clusters.
+- On the resource list, you should see a list of your clusters.
 
-Once you have the cluster you want to work on, click on the Openshift web console. When you are on the Openshift web console, click on the box icon and go into Cloud Pak console. 
+- Once you have the cluster you want to work on, click on the Openshift web console. When you are on the Openshift web console, click on the box icon and go into Cloud Pak console. 
 
-*See image below for reference*
+**See image below for reference**
 
 ![Storefront](../../images/creating-webhook-step1.png) 
 
 Once you are inside the IBM Cloud Pak console, click on the second icon to access the * **Instances** * page. On the page inside the Pipeline box, click on the button * **Manage Pipelines** *
 
-
-
 ![Storefront](../../images/creating-webhook-step2.png)
+
+Go to your Tekton Dashboard and click `Webhooks` as shown in Step 1. After you click on `Webhooks` you should be able to `Add Webhook` as shown in step 2.
 
 ![Storefront](../../images/creating-webhook-step3.png)
 
-
-
-
 ## Trigger the Webhook
-To trigger your Webhook, you must run the following steps:
+To trigger your Webhook, you must run the following steps for each microservice:
+- customer
+- orders
+- inventory
+- catalog
+- auth
+- storefront-ui
 
-Edit the README.md file and commit to trigger a change
-
-![Storefront](../../images/creating-webhook-step6.png)
+Create a webhook for each microservice as shown below: 
+For the java applications (customer, orders, inventory, catalog, auth) use the `java-springboot2-build-deploy-pl` 
+and for the applications (storefront-ui) use `nodejs-build-deploy-pl` for the pipeline.
 
 ![Storefront](../../images/creating-webhook-step4.png)
 
+Your webhooks page should look something similar as shown below:
+
+![Storefront](../../images/webhooks.png)
+
+Make a small change to trigger the pipeline such as editing the README.md file and commit to trigger a change for all microservices.
+
+![Storefront](../../images/creating-webhook-step6.png)
+
+Once you make your changes onto your repositories you should see something as shown below: 
+
 ![Storefront](../../images/creating-webhook-step5.png)
+
+Once all of your pipelines complete as shown below you can run the following command to get your url.
+
+![Storefront](../../images/pipelines-passing.png)
+
+```bash
+> oc project storefront-dev-{initials}
+> oc get routes | grep "web"
+web  web-storefront-dev-hk.gse-cloud-native-ocp4-fa9ee67c9ab6a7791435450358e564cc-0000.us-east.containers.appdomain.cloud web 3000-tcp  None
+```
+Now go to your browser and type in 
+`web-storefront-dev-hk.gse-cloud-native-ocp4-fa9ee67c9ab6a7791435450358e564cc-0000.us-east.containers.appdomain.cloud web`
