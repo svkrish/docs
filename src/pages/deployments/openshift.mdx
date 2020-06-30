@@ -40,20 +40,20 @@ cd storefront-databases
 chmod +x ./setup_databases.sh
 ```
 
-Run the below command to deploy the databases on the openshift cluster where `storefront-dev-{initials}` is the project name.
+Run the below command to deploy the databases on the openshift cluster where `storefront-dev` is the project name.
 
 ```bash
 oc login --token={your-api-token} --server={your-servername}
-./setup_databases.sh storefront-dev-{initials}
+./setup_databases.sh storefront-dev
 ```
 
 The output should be something similar to what is shown below.
 ```bash
-> ./setup_databases.sh storefront-dev-oir
-NAMESPACE not set. Using parameter "storefront-dev-oir"
+> ./setup_databases.sh storefront-dev
+NAMESPACE not set. Using parameter "storefront-dev"
 =========================================================================
 Set namespace
-error: A project named "storefront-dev-oir" does not exist on "https://c100-e.us-east.containers.cloud.ibm.com:30077".
+error: A project named "storefront-dev" does not exist on "https://c100-e.us-east.containers.cloud.ibm.com:30077".
 Your projects are:
 * calico-system
 * catapp
@@ -65,7 +65,7 @@ Your projects are:
 * tekton-pipelines
 * tigera-operator
 To see projects on another server, pass '--server=<server>'.
-Now using project "storefront-dev-oir" on server "https://c100-e.us-east.containers.cloud.ibm.com:30077".
+Now using project "storefront-dev" on server "https://c100-e.us-east.containers.cloud.ibm.com:30077".
 
 You can add applications to this project with the 'new-app' command. For example, try:
 
@@ -74,8 +74,8 @@ You can add applications to this project with the 'new-app' command. For example
 to build a new example application in Ruby.
 =========================================================================
 Adding security constraints
-scc "anyuid" added to: ["system:serviceaccount:storefront-dev-oir:default"]
-scc "privileged" added to: ["system:serviceaccount:storefront-dev-oir:default"]
+scc "anyuid" added to: ["system:serviceaccount:storefront-dev:default"]
+scc "privileged" added to: ["system:serviceaccount:storefront-dev:default"]
 =========================================================================
 Generating necessary secrets
 secret/customer-couchdb-couchdb created
@@ -119,12 +119,12 @@ job.batch/customer-ms-spring-create-user condition met
 
 Now access your new project 
 ```
-oc project {storefront-dev-initials}
+oc project storefront-dev
 ```
 You should get an output similar to what is shown below
 
 ```bash
-> oc project {storefront-dev-initials}
+> oc project storefront-dev
 > oc get pods
   NAME                                       READY     STATUS      RESTARTS   AGE
   customer-couchdb-couchdb-0                 2/2       Running     0          5m55s
@@ -135,6 +135,7 @@ You should get an output similar to what is shown below
   orders-mariadb-0                           1/1       Running     0          5m55s
 ```
 Upon completing this section you can see above all of your databases have been deployed onto your openshift cluster.
+
 ## Create an organization on Github
 
 When you create a new organization from scratch, it doesn't have any repositories associated with it.
@@ -142,7 +143,9 @@ When you create a new organization from scratch, it doesn't have any repositorie
 Github has information on how to create an organization. View the link below for the steps:
 
 https://help.github.com/en/github/setting-up-and-managing-organizations-and-teams/creating-a-new-organization-from-scratch
-## Clone the storefront-repo-automator to run the script  
+
+## Clone the storefront-repo-automator to run the script 
+
 You can manually create a new repo and added it onto your Github organization or you can use the script that we provided for you. Clone the repository [storefront-repo-automator](https://github.com/ibm-garage-ref-storefront/storefront-repo-automator) as shown below:
 
 Once you have cloned the repository, make sure you run the following command: 
@@ -159,6 +162,7 @@ After running the storefront-repo-automator, you should be able to see the store
 ![Storefront](../../images/storefront-org.png)
 
 ## Deploy Microservices to Openshift
+
 Today you will learning how to deploy all microservices to Openshift by creating a Webhook on Tekton. To achieve this, you must run the following steps:
 
 - Go on [cloud.ibm.com](cloud.ibm.com)
@@ -180,7 +184,9 @@ Go to your Tekton Dashboard and click `Webhooks` as shown in Step 1. After you c
 ![Storefront](../../images/creating-webhook-step3.png)
 
 ## Trigger the Webhook
+
 To trigger your Webhook, you must run the following steps for each microservice:
+
 - customer
 - orders
 - inventory
@@ -189,8 +195,9 @@ To trigger your Webhook, you must run the following steps for each microservice:
 - storefront-ui
 
 Create a webhook for each microservice as shown below: 
+
 For the java applications (customer, orders, inventory, catalog, auth) use the `java-springboot2-build-deploy-pl` 
-and for the applications (storefront-ui) use `nodejs-build-deploy-pl` for the pipeline.
+and for the applications (storefront-ui) use `nodejs-build-deploy-pl` as the pipeline.
 
 ![Storefront](../../images/creating-webhook-step4.png)
 
@@ -211,7 +218,7 @@ Once all of your pipelines complete as shown below you can run the following com
 ![Storefront](../../images/pipelines-passing.png)
 
 ```bash
-> oc project storefront-dev-{initials}
+> oc project storefront-dev
 > oc get routes | grep "web"
 web  web-storefront-dev-hk.gse-cloud-native-ocp4-fa9ee67c9ab6a7791435450358e564cc-0000.us-east.containers.appdomain.cloud web 3000-tcp  None
 ```
