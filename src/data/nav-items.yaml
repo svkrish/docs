@@ -31,12 +31,8 @@
   pages:
     - title: Locally on your machine
       path: /deployments/appsody
-    - title: Deploy to Openshift using Appsody
-      path: /deployments/appsodyOpenshift
     - title: Openshift
       path: /deployments/openshift
-    - title: IKS
-      path: /deployments/iks
 - title: App flow
   pages:
     - path: /app
