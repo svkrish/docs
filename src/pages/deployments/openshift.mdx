@@ -27,7 +27,6 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 + [`gh cli`](https://cli.github.com/)
 + [appsody](https://appsody.dev/docs/getting-started/installation)
 
-
 ## Set Up Databases for Storefront
 
 This project will demonstrate how to deploy all the databases that are required by the storefront application. This will show you how to deploy MySQL, Elasticsearch, CouchDB, and MariaDB databases.
@@ -150,16 +149,17 @@ You can manually create a new repo and added it onto your Github organization or
 
 Once you have cloned the repository, make sure you run the following command: 
 
-``` bash
-git clone https://github.com/ibm-garage-ref-storefront/storefront-repo-automator
-cd storefront-repo-automator
-export org={organization name}
-export initials={your initials}
-./run.sh $org $initials 
-```
+
+  ``` bash
+  git clone https://github.com/ibm-garage-ref-storefront/storefront-repo-automator
+  cd storefront-repo-automator
+  export org={your-github-org-you-created}
+  ./run.sh
+  ```
+
 After running the storefront-repo-automator, you should be able to see the storefront repositories as shown below.
 
-![Storefront](../../images/storefront-org.png)
+![Storefront](../../images/storefront-test-org.png)
 
 ## Deploy Microservices to Openshift
 
@@ -199,11 +199,11 @@ Create a webhook for each microservice as shown below:
 For the java applications (customer, orders, inventory, catalog, auth) use the `java-springboot2-build-deploy-pl` 
 and for the applications (storefront-ui) use `nodejs-build-deploy-pl` as the pipeline.
 
-![Storefront](../../images/creating-webhook-step4.png)
+![Storefront](../../images/creating-webhook-step-4.png)
 
 Your webhooks page should look something similar as shown below:
 
-![Storefront](../../images/webhooks.png)
+![Storefront](../../images/webhooks-storefront.png)
 
 Make a small change to trigger the pipeline such as editing the README.md file and commit to trigger a change for all microservices.
 
@@ -224,3 +224,9 @@ web  web-storefront-dev-hk.gse-cloud-native-ocp4-fa9ee67c9ab6a7791435450358e564c
 ```
 Now go to your browser and type in 
 `web-storefront-dev-hk.gse-cloud-native-ocp4-fa9ee67c9ab6a7791435450358e564cc-0000.us-east.containers.appdomain.cloud web`
+
+
+## Result 
+![Storefront](../../images/storefront-result.png)
+
+
