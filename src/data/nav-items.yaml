@@ -7,6 +7,12 @@
 - title: Application Overview
   pages:
     - path: /application-overview
+- title: Deployments
+  pages:
+    - title: Locally on your machine
+      path: /deployments/appsody
+    - title: Openshift
+      path: /deployments/openshift
 - title: Related Repositories
   pages:
     - title: Inventory
@@ -27,18 +33,9 @@
       path: /related-repositories/gitops
     - title: Pipelines
       path: /related-repositories/pipelines
-- title: Deployments
+- title: Resiliency
   pages:
-    - title: Locally on your machine
-      path: /deployments/appsody
-    - title: Openshift
-      path: /deployments/openshift
-- title: App flow
+    - path: /resiliency
+- title: Contributing to this Site
   pages:
-    - path: /app
-- title: References
-  pages:
-    - path: /references
-- title: Contribution Guidelines
-  pages:
-    - path: /contribution
+    - path: /contribute
