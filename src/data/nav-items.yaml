@@ -9,10 +9,12 @@
     - path: /application-overview
 - title: Deployments
   pages:
-    - title: Locally on your machine
-      path: /deployments/appsody
-    - title: Openshift
+    - title: Openshift with CP4Apps
       path: /deployments/openshift
+    - title: Toolkit OpenShift Pipelines
+      path: /related-repositories/pipelines
+    - title: Local using docker
+      path: /deployments/appsody
 - title: Related Repositories
   pages:
     - title: Inventory
