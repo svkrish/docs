@@ -3,11 +3,11 @@ import ResourceLinks from 'gatsby-theme-carbon/src/components/LeftNav/ResourceLi
 
 const links = [
   {
-    title: 'Github',
+    title: 'Github Organization',
     href: 'https://github.com/ibm-garage-ref-storefront',
   },
   {
-    title: 'Zenhub',
+    title: 'Zenhub Planning',
     href: 'https://github.com/ibm-garage-ref-storefront/planning#zenhub',
   },
 ];
