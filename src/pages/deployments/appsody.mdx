@@ -21,6 +21,9 @@ For more details on installation, check [this](https://appsody.dev/docs/installi
   - [Docker for Mac](https://docs.docker.com/docker-for-mac/)
   - [Docker for Windows](https://docs.docker.com/docker-for-windows/)
 
+* [IBM Mobile Foundation CLI](https://www.npmjs.com/package/mfpdev-cli)
+* [Ionic CLI Version 5.4.16](https://ionicframework.com/docs/cli) 
+
 ## Running the application locally
 
 Let us now deploy all the microservices of our storefront one by one locally.
@@ -391,7 +394,7 @@ aad8b8e1bce6        dev.local/inventory-ms-spring                         "/star
 
 ### Storefront UI
 
-- Clone auth repository
+- Clone Storefront-UI repository
 
 ```bash
 git clone https://github.com/ibm-garage-ref-storefront/storefront-ui.git
@@ -438,3 +441,50 @@ There you go, you deploy all the necessary services for storefront.
 Now, let us check the app out. You can access it at http://localhost:3000.
 
 ![Storefront](../../images/web.png)
+
+
+### Storefront Mobile App
+- Clone the storefront-mobile repository
+    ```
+    git clone git@github.com:ibm-garage-ref-storefront/storefront-mobile.git
+    cd storefront-mobile
+    ```
+
+- Edit `mfpconfig/app_config.json` file and update the json object for the key `adapters` with the endpoint url of storefront auth service, clientId and secret
+- Edit `mfpconfig/app_config.json` file and update the json object for the key `backendservices` with the appropriate endpoint urls of the storefront backend services
+- To enable Mobile Foundation Push Notifications service for this application you must configure the service for Push Notification Credentials (FCM, APNS).  Edit `mfpconfig/app_config.json` file and update it for these credentials under json object `services.push.settings`.  To know more about what these settings and credentials are about lookup https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notifications/sending-notifications/#setting-up-notifications    
+- To enable push notification on Android remember to replace `google-services.json` into the directory `ionic` 
+
+  All other required configurations are already preset into `mfpconfig/app_config.json` file.  Save `mfpconfig/app_config.json`
+- Start Community Edition of IBM Mobile Foundation Services locally.  NOTE : This edition is free for trial and development purposes with the constraint that data will not be persisted beyond the lifetime of the services. 
+    ```
+    mfpdev mfservices start
+    ``` 
+    and you must see the following output
+        
+    ```
+    Verifying server configuration...
+    Registering to server:'http://<mobile foundation endpoint url>:<port>' runtime:'mfp'
+    Registered app for platform: android
+    Registered app for platform: ios
+    ```
+    You can verify if the services as follows: -
+    ```
+    docker ps
+    CONTAINER ID        IMAGE                                   COMMAND                  CREATED           STATUS          PORTS                                NAMES
+    9c791e2d476d        ibmcom/ibm-mobilefoundation-ce:latest   "/opt/ibm/helpers/ru…"   45 hours ago      Up 45 hours     0.0.0.0:9080->9080/tcp, 9443/tcp     mfp-server-all
+    ```
+- Edit `ionic/config.xml` file and update the element <mfp:server runtime="mfp" url="http://localhostt:9080" /> for the url endpoint of the Mobile Foundation server
+- From a command-line window, navigate to the project's root folder and run the commands:
+    - `cd ionic` - to navigate to application folder
+    - `ionic cordova platform add ios` or `ionic cordova platform add android` - to add a platform.
+    - `npm install` - to install all required modules.
+    - `ionic cordova run` - to run the application.
+
+- Run the application to view the catalog, make an order and review the user profile.  NOTE: When you place an order you will receive a push notification on your mobile app regardign the shipment of your order.
+
+![Storefront](../../images/mobileapp.png)
+
+
+
+
