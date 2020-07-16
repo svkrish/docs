@@ -91,7 +91,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
-- Go to `scripts > mysql_data.sql`. Copy the contents from [mysql_data.sql](./scripts/mysql_data.sql) and paste the contents in the console.
+- Go to `scripts > mysql_data.sql`. Copy the contents from [mysql_data.sql](https://github.com/ibm-garage-ref-storefront/inventory-ms-spring/blob/master/scripts/mysql_data.sql) and paste the contents in the console.
 
 - You can exit from the console using `exit`.
 
@@ -181,7 +181,7 @@ Run the below command.
 appsody build
 
 # Start the Catalog Container
-docker run --name inventory-ms-spring \
+docker run --name catalog-ms-spring \
     -e ELASTIC_CLUSTER_NAME=docker-cluster \
     -e ELASTIC_NODE_URL=<docker_host>:9300 \
     -e INVENTORY_URL=http://<docker_host>:8081/micro/inventory \
@@ -245,7 +245,7 @@ appsody build
 # Start the customer Container
 docker run --name customer-ms-spring \
     -e COUCHDB_PORT=5985 \
-    -e COUCHDB_HOST=host.docker.internal \
+    -e COUCHDB_HOST=<docker_host> \
     -e COUCHDB_PROTOCOL=http \
     -e COUCHDB_USERNAME=admin \
     -e COUCHDB_PASSWORD=passw0rd \
