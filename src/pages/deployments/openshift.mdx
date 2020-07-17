@@ -14,6 +14,7 @@ Today you will be learning how to deploy all storefront microservices on Openshi
   * [Create an organization on Github](#create-an-organization-on-github)
   * [Deploy Microservices to Openshift](#deploy-microservices-to-openshift)
   * [Trigger the Webhook](#trigger-the-webhook)
+  * [Build & Run Storefront Mobile App](#build-and-run-storefront-mobile-app)
 
 ## Pre-requisites 
 
@@ -26,6 +27,8 @@ Today you will be learning how to deploy all storefront microservices on Openshi
 + [`Tekton cli`](https://github.com/tektoncd/cli)
 + [`gh cli`](https://cli.github.com/)
 + [appsody](https://appsody.dev/docs/getting-started/installation)
++ [IBM Mobile Foundation CLI](https://www.npmjs.com/package/mfpdev-cli)
++ [Ionic CLI Version 5.4.16](https://ionicframework.com/docs/cli)
 
 ## Set Up Databases for Storefront
 
@@ -229,4 +232,58 @@ Now go to your browser and type in
 ## Result 
 ![Storefront](../../images/storefront-result.png)
 
+## Build and Run Storefront Mobile App
+The storefront mobile app uses IBM Mobile Foundation services as the Mobile BFF to provide mobile security, secure connectivity to backend services, push notifications etc.
 
+### Installing IBM Mobile Foundation Services on Redhat OpenShift
+There are multiple options to obtaining IBM Mobile Foundation and installing on a OCP cluster:-
+  - IBM CloudPak for Apps (CP4A) bundles IBM Mobile Foundation.  To install IBM Mobile Foundation from CP4A see [here](https://www.ibm.com/support/knowledgecenter/en/SSCSJL_4.1.x/install-mf-cli.html)
+  - To use an existing license of IBM Mobile Foundation and deploy to OpenShift see [here](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/ibmcloud/mobilefoundation-on-openshift/)
+  - For trial and development purposes you use the Community Edition of IBM Mobile Foundation for free with the constraint that you may run only a single pod and all service data is persisted in-memory upto the lifetime of the pod.
+
+  To help you quickly get a feel of IBM Mobile Foundation integration in the Storefront application we will take you through the installation of the Community Edition.
+ 
+### Setup & run the Storefront Mobile App
+  - Clone the storefront mobile repo
+    ``` bash
+    > git clone git@github.com:ibm-garage-ref-storefront/storefront-mobile.git
+    > cd storefront-mobile
+    ```
+  - Deploy IBM Mobile Foundation Community Edition
+    ```bash
+    > oc project storefront-dev
+    > oc apply --recursive --filename mobilefoundation
+    > oc expose svc storefront-mf
+    ```
+  - Edit `mfpconfig/app_config.json` file and update the json object for the key `adapters` with the endpoint url of storefront auth service, clientId and secret
+  - Edit `mfpconfig/app_config.json` file and update the json object for the key `backendservices` with the appropriate endpoint urls of the storefront backend services
+  - To enable Mobile Foundation Push Notifications service for this application you must configure the service for Push Notification Credentials (FCM, APNS).  Edit `mfpconfig/app_config.json` file and update it for these credentials under json object `services.push.settings`.  To know more about what these settings and credentials are about lookup https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notifications/sending-notifications/#setting-up-notifications    
+  - To enable push notification on Android remember to replace `google-services.json` into the directory `ionic` 
+  - Edit mfpconfig/server_config.json and input the endpoint url (route), port and admin credentials for the Mobile Foundation Server
+
+    All other required configurations are already preset into `mfpconfig/app_config.json` file.  Save `mfpconfig/app_config.json` and `mfpconfig/server_config.json`
+  - Use the IBM Mobile Foundation CLI and execute the following command to configure the IBM Mobile Foundation services for the storefront app.
+    ```bash
+    > mfpdev app register
+    ```
+    You must observer the following output...
+    ```
+    Verifying server configuration...
+    Registering to server:'http://<mobile foundation endpoint url>:<port>' runtime:'mfp'
+    Registered app for platform: android
+    Registered app for platform: ios
+    ```
+    Now the IBM Mobile Foundation (the mobile BFF) is deployed, configured and running proceed further to build and run the storefront mobile application.
+  - Edit `ionic/config.xml` file and update the element `<mfp:server runtime="mfp" url="<openshift route of mobile foundation>" />` for the url endpoint of the Mobile Foundation server
+  - From a command-line window, navigate to the project's root folder and run the commands:
+    - `cd ionic` - to navigate to application folder
+    - `ionic cordova platform add ios` or `ionic cordova platform add android` - to add a platform.
+    - `npm install` - to install all required modules.
+    - `ionic cordova run` - to run the application.
+
+  - Run the application to view the catalog, make an order and review the user profile.  NOTE: When you place an order you will receive a push notification on your mobile app regardign the shipment of your order.
+
+    ![Storefront](../../images/mobileapp.png) 
+
+
+  
