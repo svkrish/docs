@@ -3,4 +3,47 @@ title: Storefront Mobile UI
 description: This project demonstrates the implementation of Storefront Mobile UI
 ---
 
-[Storefront Mobile UI Github Repo](https://github.com/ibm-garage-ref-storefront/storefront-mobile-ionic)
+## Introduction
+The Storefront Mobile Application is built to demonstarte how to quickly and easily enable mobile channel for an application like Storefront using the power of IBM Mobile Foundation as the mobile BFF.  IBM Mobile Foundation adds the following capabilities out of the box to the Storefront Mobile App:-
+- Mobile Device & App Security
+- Mobile App Lifecycle management (enable / disable apps)
+- Secure and seamless connectivity to the Storefront backend services
+- Mobile Push Notifications to get updates on Storefront Orders status
+- Mobile Analytics (user and session onboarding patterns, crash analytics...)
+
+## Project Features
+There are two highlevel components to this project 
+1. Mobile Client Application that runs on Mobile Devices
+2. IBM Mobile Foundation Services that operates as the mobile BFF and which is deployed as a server component (local docker, remote OpenShift cluster)
+
+Here are some finer details about this project 
+- Hybrid (ios & android) Ionic for client application
+- Mobile Foundation Login Adapter & Challengehandler code pattern to wrap Storefront user auth within Mobile Foundation auth
+- Mobile Foundation API Connectors for securely connecting the Storefront Mobile App to the Storefront backend APIs
+- Mobile Foundation Push Notifications registered for Storefront customer IDs 
+- Orders microservice integrated with Mobile Foundation Push Notifications to enable sending of push notifications about order shippments
+
+![Storefront Mobile & Server component interactions](../../images/mobile-interaction.png)
+
+[Storefront Mobile UI Github Repo](https://github.com/ibm-garage-ref-storefront/storefront-mobile)
+
+<br/><br/>
+
+<Row>
+  <Column colMd={3} colLg={4} noGutterSm>
+    <ImageCard
+      title="Build & Run Storefront Mobile App"
+      titleColor="light"
+      aspectRatio="1:1"
+      href="https://github.com/ibm-garage-ref-storefront/storefront-mobile/blob/master/README.md"
+      actionIcon="arrowRight"
+      subTitleColor="light"
+      subTitle="powered by IBM MObile Foundation"
+      >
+
+![Light dark](./images/local_run.jpg)
+
+  </ImageCard>
+  </Column>
+</Row>
+
